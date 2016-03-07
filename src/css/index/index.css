@@ -1,0 +1,8 @@
+@import '../theme/index.css';
+
+.index-page-element{
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  background: var(--index-page-element-bg);
+}
