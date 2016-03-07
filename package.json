@@ -5,8 +5,8 @@
   "scripts": {
     "test": "npm-run-all --silent lint",
     "lint": "eslint src",
-    "webpack": "webpack --progress --colors --watch",
-    "sync": "browser-sync start --server --files"
+    "dev": "node server",
+    "sync": "browser-sync start --files '*.html'  --proxy localhost:3010"
   },
   "author": "Dmitry Olkhovoi <auuine@gmail.com>",
   "license": "MIT",
