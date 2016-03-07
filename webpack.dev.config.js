@@ -4,10 +4,15 @@ var path = require('path');
 var pages = require('./pages');
 
 module.exports = {
-  entry: pages,
+  entry: [
+    ...Object.keys(pages).map(function (key) {return pages[key]}),
+    'webpack-dev-server/client?http://localhost:3010',
+    'webpack/hot/only-dev-server',
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].min.js'
+    filename: 'dev.min.js',
+    publicPath: '/dist'
   },
   module: {
     loaders: [
@@ -26,6 +31,6 @@ module.exports = {
     return [require('postcss-import')({ addDependencyTo: webpack }), require('postcss-cssnext')];
   },
   plugins: [
-    // new ExtractTextPlugin("[name].min.css")
+    new webpack.HotModuleReplacementPlugin()
   ]
 };

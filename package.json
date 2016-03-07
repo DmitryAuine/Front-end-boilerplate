@@ -4,7 +4,9 @@
   "description": "Boilerplate for front-end projects",
   "scripts": {
     "test": "npm-run-all --silent lint",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "webpack": "webpack --progress --colors --watch",
+    "sync": "browser-sync start --server --files"
   },
   "author": "Dmitry Olkhovoi <auuine@gmail.com>",
   "license": "MIT",
@@ -21,7 +23,8 @@
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.8.1",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "jquery": "^2.2.1"
