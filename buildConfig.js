@@ -7,9 +7,9 @@ module.exports = {
         c: ["./c", "./d"]
       },
     */
-    index: './src/js/index'
+    index: './src/js/index',
   },
   css: {
-    extract: false
-  }
+    extract: false,
+  },
 };

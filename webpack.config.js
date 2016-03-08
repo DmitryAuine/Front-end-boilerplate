@@ -1,35 +1,40 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var webpack = require('webpack');
-var path = require('path');
-var buildConfig = require('./buildConfig');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const buildConfig = require('./buildConfig');
 
-var plugins = [
+const plugins = [
   //
 ];
 
-buildConfig.css.extract && plugins.push(new ExtractTextPlugin("[name].min.css"));
+if (buildConfig.css.extract) {
+  plugins.push(new ExtractTextPlugin('[name].min.css'));
+}
 
 module.exports = {
   entry: buildConfig.pages,
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].min.js'
+    filename: '[name].min.js',
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
-         test: /\.css$/,
-         loader: buildConfig.css.extract ? ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
-          : "style-loader!css-loader!postcss-loader"
-      }
-    ]
+        test: /\.css$/,
+        loader: buildConfig.css.extract
+         ? ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+         : 'style-loader!css-loader!postcss-loader',
+      },
+    ],
   },
-  postcss: function (webpack) {
-    return [require('postcss-import')({ addDependencyTo: webpack }), require('postcss-cssnext')];
-  },
-  plugins: plugins
+  postcss: () =>
+    [
+      require('postcss-import')({ addDependencyTo: webpack }),
+      require('postcss-cssnext'),
+    ],
+  plugins,
 };
