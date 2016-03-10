@@ -1,7 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { build as config } from '../config';
+import {
+  build as config,
+  devServer as devServerConfig,
+} from '../config';
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -14,7 +17,7 @@ if (config.css.extract) {
 module.exports = {
   entry: [
     ...Object.keys(config.pages).map(key => config.pages[key]),
-    'webpack-dev-server/client?http://localhost:3010',
+    `webpack-dev-server/client?http://localhost:${devServerConfig.webpackPort}`,
     'webpack/hot/dev-server',
   ],
   output: {

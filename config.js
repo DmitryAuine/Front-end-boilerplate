@@ -14,4 +14,8 @@ module.exports = {
       extract: false,
     },
   },
+  devServer: {
+    webpackPort: 3010,
+    browserSyncPort: 3000,
+  },
 };

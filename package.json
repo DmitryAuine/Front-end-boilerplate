@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm-run-all --silent lint",
     "lint": "eslint src",
-    "dev": "node server",
+    "dev": "babel-node server",
     "sync": "browser-sync start --files '*.html'  --proxy localhost:3010",
     "build": "babel-node ./bundler/index"
   },
