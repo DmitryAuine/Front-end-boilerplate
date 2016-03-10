@@ -6,7 +6,8 @@
     "test": "npm-run-all --silent lint",
     "lint": "eslint src",
     "dev": "node server",
-    "sync": "browser-sync start --files '*.html'  --proxy localhost:3010"
+    "sync": "browser-sync start --files '*.html'  --proxy localhost:3010",
+    "build": "babel-node ./bundler/index"
   },
   "author": "Dmitry Olkhovoi <auuine@gmail.com>",
   "license": "MIT",

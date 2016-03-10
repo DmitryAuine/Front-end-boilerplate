@@ -1,18 +1,18 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
-const path = require('path');
-const buildConfig = require('./buildConfig');
+import webpack from 'webpack';
+import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import { build as config } from '../config';
 
 const plugins = [
   //
 ];
 
-if (buildConfig.css.extract) {
+if (config.css.extract) {
   plugins.push(new ExtractTextPlugin('[name].min.css'));
 }
 
 module.exports = {
-  entry: buildConfig.pages,
+  entry: config.pages,
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].min.js',
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: buildConfig.css.extract
+        loader: config.css.extract
          ? ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
          : 'style-loader!css-loader!postcss-loader',
       },
