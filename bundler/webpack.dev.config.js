@@ -21,9 +21,9 @@ module.exports = {
     'webpack/hot/dev-server',
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'index.min.js',
-    publicPath: '/dist',
+    path: path.join(__dirname, '../dist'),
+    filename: '[name].min.js',
+    publicPath: '../dist/',
   },
   module: {
     loaders: [
@@ -37,6 +37,11 @@ module.exports = {
           ? ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
           : 'style-loader!css-loader!postcss-loader',
       },
+      { test: /\.(woff|woff2)$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.ttf$/, loader: 'file-loader' },
+      { test: /\.eot$/, loader: 'file-loader' },
+      { test: /\.svg$/, loader: 'file-loader' },
+      { test: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name]_[hash].[ext]' },
     ],
   },
   postcss: () =>
